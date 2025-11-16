@@ -1,0 +1,77 @@
+{
+  "name": "bsscaner",
+  "productName": "BSscaner",
+  "version": "1.0.0",
+  "description": "BSscaner - Bluesky Social Scanner and Post Generator",
+  "main": "main.js",
+  "icon": "icons/mac/icon.icns",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "prebuild": "node prebuild.js",
+    "build": "electron-builder",
+    "dist": "electron-builder --publish=never",
+    "build:mac-intel": "npm run prebuild && electron-builder --mac --x64",
+    "build:mac-silicon": "npm run prebuild && electron-builder --mac --arm64",
+    "build:mac-universal": "npm run prebuild && electron-builder --mac universal",
+    "build:all": "npm run build:mac-intel && npm run build:mac-silicon",
+    "clean": "rm -rf dist node_modules/.cache"
+  },
+  "keywords": [
+    "electron",
+    "desktop",
+    "app",
+    "bluesky",
+    "social",
+    "scanner"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0",
+    "electron-icon-maker": "^0.0.5"
+  },
+  "build": {
+    "appId": "com.bsscaner.app",
+    "productName": "BSscaner",
+    "directories": {
+      "output": "dist"
+    },
+    "extraMetadata": {
+      "author": "BSscaner Team"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*"
+    ],
+    "mac": {
+      "icon": "icons/mac/icon.icns",
+      "category": "public.app-category.social-networking",
+      "target": [
+        "dmg"
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "entitlements.mac.plist",
+      "timestamp": false,
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "icon": "img/bslogo.png",
+      "target": "nsis",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "linux": {
+      "icon": "img/bslogo.png",
+      "target": "AppImage",
+      "category": "Network"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

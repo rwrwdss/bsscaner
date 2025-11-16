@@ -1,0 +1,21 @@
+# User data (NEVER COMMIT!)
+*.session
+*.jwt
+accounts.json
+localStorage.json
+neurocommentingResults.json
+
+# Build
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
